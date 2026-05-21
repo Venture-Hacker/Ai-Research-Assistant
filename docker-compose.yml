@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  # Python Django Backend Service
+  backend:
+    build: ./backend
+    container_name: ai_backend
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=1
+      - GROQ_API_KEY=${GROQ_API_KEY}
+    depends_on:
+      - chromadb
+
+  # React Frontend Service
+  frontend:
+    build: ./frontend
+    container_name: ai_frontend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      - CHOKIDAR_USEPOLLING=true # Ensures hot-reloading works smoothly in WSL 2
+    stdin_open: true
+    tty: true
+
+  # ChromaDB Vector Store
+  chromadb:
+    image: chromadb/chroma:latest
+    container_name: ai_vector_db
+    volumes:
+      - chroma_data:/chroma/chroma
+    ports:
+      - "8001:8000" # Internal mapping handled if ports clash; we will use local network routing
+
+volumes:
+  chroma_data:

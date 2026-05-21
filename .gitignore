@@ -1,0 +1,22 @@
+# Environment
+.env
+
+# Temp / generated files
+plan_extract.txt
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+
+# Django
+db.sqlite3
+*.log
+
+# Docker
+*.override.yml
