@@ -38,10 +38,10 @@ function App() {
   return (
     <div className="App" style={{ padding: '20px', maxWidth: '600px', margin: '0 auto', fontFamily: 'sans-serif' }}>
       <h2>Zero-Cost AI Assistant</h2>
-      
+
       <div style={{ border: '1px solid #ccc', height: '400px', overflowY: 'auto', padding: '10px', marginBottom: '10px', textAlign: 'left', borderRadius: '5px' }}>
         {messages.length === 0 ? <p style={{ color: '#888' }}>Ask me a technical question...</p> : null}
-        
+
         {messages.map((msg, index) => (
           <div key={index} style={{ marginBottom: '15px' }}>
             <strong>{msg.sender}:</strong>
@@ -52,10 +52,10 @@ function App() {
       </div>
 
       <form onSubmit={sendMessage} style={{ display: 'flex', gap: '10px' }}>
-        <input 
-          type="text" 
-          value={input} 
-          onChange={(e) => setInput(e.target.value)} 
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
           placeholder="Type your message..."
           style={{ flex: 1, padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}
         />
